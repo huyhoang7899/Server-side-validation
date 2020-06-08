@@ -1,0 +1,21 @@
+extends ../../layouts/layout.pug
+
+block content
+
+  h1 View User
+
+  a.btn.btn-primary.mb-3(href="/users") Back to menu 
+  
+  table.table
+    thead.thead-dark
+      tr
+        th(scope='col') Name
+        th(scope='col') Age
+        th(scope='col', style="width: 40%") Address
+        th(scope='col') Phone number
+    tbody
+      tr
+        td= user.name
+        td= user.age
+        td= user.address
+        td= user.phone

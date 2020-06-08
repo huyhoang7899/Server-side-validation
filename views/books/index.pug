@@ -1,0 +1,26 @@
+extends ../../layouts/layout.pug
+
+block content
+  h1 
+    span Book
+    a.ml-3.btn.btn-success(href="/books/create") Create Book
+
+  .d-flex
+    form.form-inline.my-2.my-lg-0.ml-auto(action='/books/search' method="GET")
+      input.form-control.mr-sm-2(type='search', placeholder='Search', aria-label='Search' name="q" value=q)
+      button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
+  
+  table.table.mt-2
+    thead.thead-dark
+      tr
+        th(scope='col') Name
+        th(scope='col') Author
+        th(scope='col') Action
+    tbody
+      each book in books
+        tr
+          td.align-middle=book.title
+          td.align-middle= book.description
+          td 
+            a.btn.btn-info.mr-2(href="/books/" + book.id + "/update") Update 
+            a.btn.btn-info(href="/books/" + book.id + "/delete") Delete 

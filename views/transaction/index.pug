@@ -1,0 +1,33 @@
+extends ../../layouts/layout.pug
+
+block content
+  h1 
+    span Transaction
+    a.btn.btn-success.ml-3(href="/transactions/create") Create Transaction
+  
+  if(error)
+    .alert.alert-danger= error
+
+  .d-flex
+    form.form-inline.my-2.my-lg-0.ml-auto(action='/transactions/search', method='GET')
+      input.form-control.mr-sm-2(type='search', placeholder='Search', aria-label='Search', name="q" value=q)
+      button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
+
+  table.table.mt-2
+    thead.thead-dark
+      tr
+        th(scope='col') User ID
+        th(scope='col') Book ID
+        th(scope='col') Complete
+        th(scope='col') Action
+    tbody
+      each transaction in transactions
+        tr
+          td.align-middle= transaction.userId
+          td.align-middle= transaction.bookId
+          td.align-middle= transaction.isComplete
+          td.d-flex
+            a.btn.btn-info(href="/transactions/" + transaction.id + "/update") Update 
+            a.btn.btn-info.mx-2(href="/transactions/" + transaction.id + "/delete") Delete 
+            form.mb-0(method="GET" action='/transactions/' + transaction.id + '/complete')
+              input.btn.btn-info(type="submit" value="Finish")

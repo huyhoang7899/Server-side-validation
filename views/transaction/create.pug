@@ -1,0 +1,15 @@
+extends ../../layouts/layout.pug
+
+block content
+  h1 Create
+
+  form(action="/transactions/create" method="POST")
+    select(name="bookId")
+      each book in books
+        option(value=book.id)= book.title
+    span &nbsp
+    select(name="userId")
+      each user in users
+        option(value=user.id)= user.name 
+    span &nbsp  
+    button Create
