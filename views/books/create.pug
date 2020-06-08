@@ -1,0 +1,11 @@
+extends ../../layouts/layout.pug
+
+block content
+  h1 Add new book
+
+  form(action="/books/create" method="POST")
+    label Name 
+    input(name="title" type="text") 
+    label Author 
+    input(name="description" type="text") 
+    button Add
